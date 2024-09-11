@@ -78,7 +78,7 @@ module Baseline
     }.each do |type, job_fetcher|
       define_singleton_method "#{type}_jobs" do |*args|
         args = args.map do |arg|
-          case arg = Baseline.replace_records_with_global_ids(arg)
+          case arg = arg
           when Symbol then arg.to_s
           when Hash   then arg.stringify_keys
           when Array  then arg.map { _1.is_a?(Symbol) ? _1.to_s : _1 }

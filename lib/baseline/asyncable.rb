@@ -35,14 +35,14 @@ module Baseline
     module ClassMethods
       ASYNC_METHOD_SUFFIXES.each do |async_method_suffix|
         define_method "call_#{async_method_suffix}" do |*args|
-          args = args.map(&Baseline.method(:replace_records_with_global_ids))
+          # args = args.map(&Baseline.method(:replace_records_with_global_ids))
           self.public_send "perform_#{async_method_suffix}", *args
         end
       end
     end
 
     def perform(*args)
-      args = args.map(&Baseline.method(:replace_global_ids_with_records))
+      # args = args.map(&Baseline.method(:replace_global_ids_with_records))
 
       call_method = method(:call)
 
